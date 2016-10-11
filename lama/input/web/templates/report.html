@@ -1,0 +1,14 @@
+{% extends "template.html" %}
+{% block title %}Report{% endblock %}
+{% block content %}
+  <div>
+    <div class="">
+      <span>Choose format : </span>
+      {% for type in types %}
+          <a class="btn btn-primary" href="{{ url_for('web_analyze_report', analysis_id=analysis_id, out_format=type) }}">{{ type }}</a>
+        {% endfor %}
+    </div>
+    <h2 class="analysis_title">Analysis {{ analysis_id }}</h2>
+    <div>{{ report|safe }}</div>
+  <div>
+{% endblock %}

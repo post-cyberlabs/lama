@@ -1,0 +1,55 @@
+{% extends "template.html" %}
+{% set active = "list" %}
+{% block title %}List{% endblock %}
+{% block content %}
+
+  <div>
+    <div>
+      {% set prev = page-1 %}
+      {% set next = page+1 %}
+      {% if prev_page %}
+        <a class="btn" href="{{ url_for('web_analyze_list', page = prev, limit = limit)}}">Prev</a>
+      {% else %}
+        <a class="btn disabled" style="pointer-events: none;" href="{{ url_for('web_analyze_list', page = prev, limit = limit)}}">Prev</a>
+      {% endif %}
+
+      {% if next_page %}
+      <a class="btn" href="{{ url_for('web_analyze_list', page = next, limit = limit)}}">Next</a>
+      {% else %}
+        <a class="btn disabled" style="pointer-events: none;" href="{{ url_for('web_analyze_list', page = next, limit = limit)}}">Next</a>
+      {% endif %}
+
+      <select id="limit" selected="{{ limit }}" onchange="self.location='{{ url_for('web_analyze_list', page = page)}}/'+this.options[this.selectedIndex].value ">
+        {% for l in [5, 10, 25, 50, 100] %}
+        {% if l == limit %}
+        <option value="{{ l }}" selected="selected">{{ l }}</option>
+        {% else %}
+        <option value="{{ l }}">{{ l }}</option>
+        {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    {% for analysis in analysis_list.items()|sort(reverse = True) %}
+      <div  style="border-bottom: 1px solid #007acc; padding-bottom:10px;">
+        <div>
+          <h4 style="display:inline;"><a href="{{ url_for('web_analyze_report', analysis_id = analysis[0])}}">Analysis {{ analysis[0] }}</a></h4>
+          <span>Avg {{ analysis[1]['avg'] }}, max {{ analysis[1]['max'] }}</span>
+          <a href="#" class="remove_field" onclick="delete_analysis({{ analysis[0] }})"><span class="badge badge-important">X</span></a>
+        </div>
+        <ul class="nav nav-list analysis_list">
+        {% for m_uid, malware in analysis[1]['malwares'].items() %}
+          <li>
+          <h5><a href="/file?path={{ malware['path'] }}/{{ malware['name'] }}">{{ malware['name'] }}</a></h5>
+          <span>{{ malware['mime'] }}</span><br/>
+          <span>{{ malware['size'] }} octets</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+    <div style="margin-top:50px;">
+      <a href="#" class="remove_field" onclick="delete_all_analysis()"><span class="badge badge-important">Delete all analysis</span></a>
+    </div>
+  <div>
+{% endblock %}

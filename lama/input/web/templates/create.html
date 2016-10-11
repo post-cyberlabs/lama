@@ -1,0 +1,44 @@
+{% extends "template.html" %}
+{% set active = "upload" %}
+{% block title %}Upload{% endblock %}
+{% block content %}
+  {% if analysis_id %}
+    <div class="">
+      <span>Choose format : </span>
+      {% for type in types %}
+          <a class="btn btn-primary" href="{{ url_for('web_analyze_report', analysis_id=analysis_id, out_format=type) }}">{{ type }}</a>
+        {% endfor %}
+    </div>
+    <h3>View Analysis</h3>
+  {% else %}
+    <form class="form-horizontal well" action="/analyze/create" method="post" enctype="multipart/form-data">
+      <fieldset>
+
+        <div class="control-group input_fields_wrap_url">
+          <h2 class="analysis_title">URL</h2>
+          <button class="btn btn-primary add_field_button_url">+</button>
+          <div class="controls">
+            <input id="urlInput" class="input-url" multiple name="url[]"><a href="#" class="remove_field_url"><span class="badge badge-important">X</span></a>
+          </div>
+        </div>
+
+        <div class="control-group input_fields_wrap">
+          <h2 class="analysis_title">File</h2>
+          <button class="btn btn-primary add_field_button">+</button>
+          <div class="controls">
+            <input type="file" id="fileInput" class="input-file" multiple name="file[]"><a href="#" class="remove_field"><span class="badge badge-important">X</span></a>
+          </div>
+        </div>
+
+
+        <div class="form-actions">
+
+
+          <button class="btn btn-success" type="submit">Run analysis</button>
+          <button class="btn btn-danger" type="reset">Cancel</button>
+        </div>
+
+      </fieldset>
+    </form>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "template.html" %}
+{% set active = "index" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+  <center>
+    <h2>Lab for Automated Malware Analysis.</h2>
+    <img src="{{ url_for('static', filename='img/lama.gif') }}"/>
+  </center>
+{% endblock %}

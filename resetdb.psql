@@ -1,0 +1,2 @@
+/* psql -d lamadb -f /opt/lama/resetdb.psql */
+DROP TABLE IF EXISTS indicator, module_status, malware, analysis;

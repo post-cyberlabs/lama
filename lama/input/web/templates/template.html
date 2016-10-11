@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lama</title>
+    <link rel="icon" href="{{ url_for('static', filename='img/lama.ico') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.light.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lama.css') }}">
+    <noscript><center><h1>JavaScript is Disabled</h1><img src="{{ url_for('static', filename='img/lama5.jpg') }}"/><h2>Please, enable it :D</h2></center></noscript>
+    <script
+			  src="https://code.jquery.com/jquery-3.0.0.min.js"
+			  integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0="
+			  crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/lama.js') }}"></script>
+  </head>
+  <body>
+
+    <div style="visibility:hidden" class="container" id="wrapper">
+      <header>
+        <a href="{{ url_for('web_index')}}">
+          <img id="logo" width="60" src="{{ url_for('static', filename='img/lama.png') }}"/>
+        </a>
+        <h1 class="page-header" >{% block title %}{% endblock %}</h1>
+      </header>
+      <menu>
+        <ul class="nav nav-pills">
+          <li class="{% if active=="index" %}active{% endif %}">
+            <a href="{{ url_for('web_index')}}">Home</a>
+          </li>
+          <li class="{% if active=="list" %}active{% endif %}">
+            <a href="{{ url_for('web_analyze_list')}}">List</a>
+          </li>
+          <li class="{% if active=="upload" %}active{% endif %}">
+            <a href="{{ url_for('web_analyze_create') }}">Upload</a>
+          </li>
+          <li class="{% if active=="about" %}active{% endif %}">
+            <a href="{{ url_for('web_about') }}">About</a>
+          </li>
+        </ul>
+      </menu>
+
+      <div id="content" class="well">
+        {% block content %}{% endblock %}
+      </div>
+      
+      <a href="#" class="scrollup">Scroll</a>
+
+      <div id="footer">
+        <span class="pull-right">&copy; Copyright 2016 by <a href="http://post.lu/">POST</a>.</span>
+      </div>
+    </div>
+    <script>
+    $('#wrapper').css('visibility', 'visible');
+    </script>
+  </body>
+</html>
