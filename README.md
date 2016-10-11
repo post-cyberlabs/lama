@@ -11,3 +11,9 @@ You can see the documentation done with Sphinx in "docs/" by building it with `.
 
 ### Install
 Just run `sudo install.sh`
+
+### Author - Contact
+Author: Valentin Giannini
+Projet done during internship at CSE POST Luxembourg
+
+Email: cse.contact -at- post.lu
