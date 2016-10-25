@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
 
-__author__ = "Valentin Giannini"
-__copyright__ = "Copyright 2016, LAMA"
-__credits__ = [""]
-__license__ = "GPL"
-__version__ = "3"
-__maintainer__ = "Valentin Giannini - CSE Team"
-__email__ = "cse.contact -at- post.lu"
-__status__ = "Production"
-
 """ CLI
 
 Usage:
@@ -32,6 +23,15 @@ Examples:
     lama_mail.py -u jonh -s pop.doe.lu -p 110 --password      (Connect to mail server)
 
 """
+
+__author__ = "Valentin Giannini"
+__copyright__ = "Copyright 2016, LAMA"
+__credits__ = [""]
+__license__ = "GPL"
+__version__ = "3"
+__maintainer__ = "Valentin Giannini - CSE Team"
+__email__ = "cse.contact -at- post.lu"
+__status__ = "Production"
 
 import os
 import sys
